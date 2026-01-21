@@ -1,15 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}All Posts{% endblock %}
+{% block title %}All Messages{% endblock %}
 
 {% block body %}
 <div>
-  {% if posts|length > 0 %}
-    {% for post in posts %}
+  {% if messages|length > 0 %}
+    {% for message in messages|slice(0, limit) %}
       <div>
-        <a href="{{ path('app_micro_post_show', { post: post.id }) }}">
-            {{ post.title }}
+        <a href="{{ path('app_show_one', { id: loop.index0 }) }}">
+            {{ message.message }}
         </a>
+        <small>{{ message.created }}</small>
       </div>
     {% endfor %}
   {% else %}
